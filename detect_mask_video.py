@@ -81,6 +81,7 @@ maskNet = load_model("mask_detector.model")
 
 # initialize the video stream
 print("[INFO] starting video stream...")
+# vs = VideoStream('https://100.65.200.157:8080/video?type=some.mjpeg').start()
 vs = VideoStream(src=0).start()
 
 # loop over the frames from the video stream
@@ -116,7 +117,9 @@ while True:
 		cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
 
 	# show the output frame
-	cv2.imshow("Frame", frame)
+	cv2.namedWindow('image', cv2.WINDOW_NORMAL)
+	cv2.resizeWindow('image', 800, 600)
+	cv2.imshow("image", frame)
 	key = cv2.waitKey(1) & 0xFF
 
 	# if the `q` key was pressed, break from the loop
